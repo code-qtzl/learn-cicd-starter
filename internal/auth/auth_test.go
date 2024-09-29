@@ -41,7 +41,7 @@ func TestGetAPIKey(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			apiKey, err := GetAPIKey(tt.headers)
 
-			if apiKeyuyuy != tt.expectedKey {
+			if apiKey != tt.expectedKey {
 				t.Errorf("expected key %v, got %v", tt.expectedKey, apiKey)
 			}
 
