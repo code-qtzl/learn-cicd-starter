@@ -21,12 +21,7 @@ jobs:
             - name: Go Unit Test
               run: go test ./... -cover
 
-    security:
-        name: Security
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Install gosec
+            - name: Install Security gosec
               run: go install github.com/securego/gosec/v2/cmd/gosec@latest
 
     style:
@@ -45,5 +40,5 @@ jobs:
             - name: Formatting CI
               run: test -z $(go fmt ./...)
 
-            - name: Install staticcheck
+            - name: Install Linting staticcheck
               run: go install honnef.co/go/tools/cmd/staticcheck@latest
