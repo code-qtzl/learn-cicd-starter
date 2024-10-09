@@ -1,12 +1,12 @@
-name: CD
+name: CI
 
 on:
-    push:
+    pull_request:
         branches: [main]
 
 jobs:
     tests:
-        name: Deploy
+        name: Tests
         runs-on: ubuntu-latest
 
         steps:
@@ -18,5 +18,27 @@ jobs:
               with:
                   go-version: '1.23.0'
 
-            - name: Build App
-              run: ./scripts/buildprod.sh
+            - name: Go Unit Test
+              run: go test ./... -cover
+
+            - name: Install gosec
+              run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+    style:
+        name: Style
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v4
+
+            - name: Set up Go
+              uses: actions/setup-go@v5
+              with:
+                  go-version: '1.23.0'
+
+            - name: Formatting CI
+              run: test -z $(go fmt ./...)
+
+            - name: Install Linting staticcheck
+              run: go install honnef.co/go/tools/cmd/staticcheck@latest
