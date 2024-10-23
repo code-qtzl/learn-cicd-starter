@@ -38,5 +38,8 @@ jobs:
             - name: 'Use gcloud CLI'
               run: 'gcloud info'
 
-            - name: 'Deploy to Docker'
-              run: 'gcloud builds submit --tag us-south1-docker.pkg.dev/notely-438723/notely-r-repo1/notely:latest .'
+            # - name: 'Deploy to Docker'
+            #   run: 'gcloud builds submit --tag us-south1-docker.pkg.dev/notely-438723/notely-r-repo1/notely:latest .'
+
+            - name: Deploy to Cloud Run
+              run: gcloud run deploy notely --image us-central1-docker.pkg.dev/notely-438723/notely-r-repo1/notely:latest --region REGION --allow-unauthenticated --project PROJECT_ID --min-instances=4
