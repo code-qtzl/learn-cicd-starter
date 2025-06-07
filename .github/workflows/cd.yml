@@ -43,7 +43,9 @@ jobs:
               run: chmod +x ./scripts/migrateup.sh
 
             - name: Run Database Migrations
-              run: ./scripts/migrateup.sh
+              run: |
+                  echo "DB URL format (showing only structure): $(echo $DATABASE_URL | sed 's/[^:/@]*/REDACTED/g')"
+                  ./scripts/migrateup.sh
               env:
                   DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
