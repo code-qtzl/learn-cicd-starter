@@ -44,7 +44,7 @@ jobs:
 
             - name: Run Database Migrations
               run: |
-                  FIXED_URL="libsql://${DATABASE_URL#*://}"
+                  FIXED_URL=libsql://${DATABASE_URL#*://}
                   DATABASE_URL="$FIXED_URL" ./scripts/migrateup.sh
               env:
                   DATABASE_URL: ${{ secrets.DATABASE_URL }}
