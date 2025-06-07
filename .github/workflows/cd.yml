@@ -27,7 +27,7 @@ jobs:
               run: ./scripts/buildprod.sh
 
             # Make the script executable
-            - name: Make build script executableAdd commentMore actions
+            - name: Make build script executable
               run: chmod +x ./scripts/buildprod.sh
 
             - id: auth
