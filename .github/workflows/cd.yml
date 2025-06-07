@@ -29,9 +29,11 @@ jobs:
               run: chmod +x ./scripts/buildprod.sh
 
             - id: auth
+              name: Authenticate to Google Cloud
               uses: google-github-actions/auth@v2
               with:
                   credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+                  cleanup_credentials: true
 
             - name: Set up Cloud SDK
               uses: google-github-actions/setup-gcloud@v1
